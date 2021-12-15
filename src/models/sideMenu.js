@@ -10,5 +10,9 @@ export default {
   getSideMenu() {
     return axios.get(API.SIDE_MENU)
       .then(res => res.data)
+  },
+  saveSideMenu(data) {
+    return axios.post(API.SIDE_MENU, data)
+      .then(res => res.data)
   }
 }

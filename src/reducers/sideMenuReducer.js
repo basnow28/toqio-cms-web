@@ -46,6 +46,25 @@ const sideMenuReducer = (state = initialState, action) => {
         isFetchingSideMenu: false,
         errorFetchingSideMenu: true,
       }
+    /* POSTING NEW SIDE MENU OPTIONS */
+    case types.POST_SIDE_MENU:
+      return {
+        ...state,
+        isPostingSideMenu: true,
+        errorPostingSideMenu: false,
+      }
+    case types.POST_SIDE_MENU_SUCCESS:
+      return {
+        ...state,
+        isPostingSideMenu: false,
+        errorPostingSideMenu: false,
+      }
+    case types.POST_SIDE_MENU_ERROR:
+      return {
+        ...state,
+        isPostingSideMenu: false,
+        errorPostingSideMenu: true,
+      }
     default:
       return state;
   }

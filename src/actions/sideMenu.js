@@ -29,4 +29,18 @@ export const getSideMenu = () => (dispatch) => {
         type: types.FETCH_SIDE_MENU_ERROR,
       })
     })
-}
+};
+
+export const saveSideMenu = (data) => (dispatch) => {
+  dispatch({ type: types.POST_SIDE_MENU });
+  return SideMenu.saveSideMenu(data)
+    .then(() => {
+      dispatch({
+        type: types.POST_SIDE_MENU_SUCCESS
+      })
+    }).catch(() => {
+      dispatch({
+        type: types.POST_SIDE_MENU_ERROR
+      })
+    })
+};

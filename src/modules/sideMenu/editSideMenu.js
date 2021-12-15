@@ -1,8 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { toast } from "react-toastify";
 
 import * as actions from '../../actions';
+import { map } from "lodash";
+import { reorder } from "../../utils/utils";
+
 
 class EditSideMenu extends React.Component {
   state = {
@@ -10,58 +14,78 @@ class EditSideMenu extends React.Component {
     sideMenu: [],
   }
 
+  onDragEnd = (result) => {
+    this.setState({ sideMenu: reorder(this.state.sideMenu, result.source.index, result.destination.index) });
+  }
+
   renderSideMenu = () => {
     return (
-      <DragDropContext>
-        <Droppable droppableId="list">
-          {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId="sideMenuList">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+            >
+              {map(this.state.sideMenu, (item, index) =>
+                <Draggable
+                  draggableId={item.id}
+                  key={item.id}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <div>
+                        {item.text}
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              )}
               {provided.placeholder}
-              <Draggable>
-                {provided => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    hello
-                  </div>
-                )}
-              </Draggable>
-              <Draggable>
-                {provided => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    hi
-                  </div>
-                )}
-              </Draggable>
             </div>
           )}
         </Droppable>
-      </DragDropContext>
+      </DragDropContext >
     )
+  }
+
+  onSave = () => {
+    Promise.all([
+      this.props.dispatch(actions.saveSideMenu(this.state.sideMenu))
+    ]).then(() => {
+      if (!this.props.errorPostingSideMenu) {
+        toast("Changes saved successfully")
+      } else {
+        toast("There has been an error")
+      }
+    })
   }
 
   componentDidMount() {
     Promise.all([
       this.props.dispatch(actions.getSideMenu()),
       this.props.dispatch(actions.getSideMenuOptions())
-    ]).then(async () =>
-      this.setState({ sideMenuOptions: this.props.sideMenuOptions }),
-      this.setState({ sideMenu: this.props.sideMenu })
+    ]).then(() => {
+      if (!this.props.errorFetchingSideMenu) {
+        //this.setState({ sideMenuOptions: this.props.sideMenuOptions }),
+        this.setState({ sideMenu: this.props.sideMenu })
+      }
+    }
     )
   }
 
   render() {
     const { sideMenu, sideMenuOptions } = this.props;
-    console.log(sideMenu, sideMenuOptions)
     return (
       <div>
         {this.renderSideMenu()}
+        <button onClick={this.onSave}>
+          Save changes
+        </button>
       </div>
     )
   }
@@ -71,6 +95,7 @@ const mapStateToProps = (state) => {
   return {
     sideMenuOptions: state.sideMenu.sideMenuOptions,
     sideMenu: state.sideMenu.sideMenu,
+    errorPostingSideMenu: state.sideMenu.errorPostingSideMenu,
   }
 }
 

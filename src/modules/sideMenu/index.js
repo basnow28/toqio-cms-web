@@ -8,27 +8,18 @@ import { SideMenuComponent } from '../../components/sideMenuComponent/sideMenuCo
 
 
 class SideMenu extends React.Component {
-  state = {
-    sideMenuOptions: []
-  }
-
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(actions.getSideMenuOptions()),
       this.props.dispatch(actions.getSideMenu())
     ]).then(async () => {
-      if (this.props.errorFetchingSideMenuOptions) {
+      if (this.props.errorFetchingSideMenu) {
         toast("There has been an error")
-      } else {
-        this.setState({ sideMenuOptions: this.props.sideMenuOptions })
       }
     })
   }
 
   render() {
     const { sideMenu } = this.props;
-    console.log(actions)
-    console.log(this.props.sideMenu)
     return (
       <div>
         <h3>This is the current side menu personalization setup</h3>
@@ -49,8 +40,7 @@ class SideMenu extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    errorFetchingSideMenuOptions: state.sideMenu.errorFetchingSideMenuOptions,
-    sideMenuOptions: state.sideMenu.sideMenuOptions,
+    errorFetchingSideMenuOptions: state.sideMenu.errorFetchingSideMenu,
     sideMenu: state.sideMenu.sideMenu,
   }
 }
