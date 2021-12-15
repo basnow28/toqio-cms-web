@@ -7,5 +7,10 @@ export const NavBarComponents = [
     title: 'Side Menu',
     path: '/sideMenu',
     icon: <AiIcons.AiOutlineMenu />,
+  },
+  {
+    title: 'Dashboard',
+    path: '/dashboard',
+    icon: <AiIcons.AiFillDashboard />,
   }
 ]

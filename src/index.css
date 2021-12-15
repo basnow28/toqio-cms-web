@@ -1,4 +1,16 @@
 html, body, #app, #app>div {
   height: 100%;
   background-color: #1a83ff;
+  justify-content: center;
+}
+
+h3 {
+  font-size:medium;
+  color: white;
+  align-self: center;
+}
+
+.main-wrapper{
+  display: flex;
+  flex-direction: row;
 }

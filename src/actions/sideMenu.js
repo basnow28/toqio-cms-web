@@ -15,3 +15,18 @@ export const getSideMenuOptions = () => (dispatch) => {
       })
     });
 };
+
+export const getSideMenu = () => (dispatch) => {
+  dispatch({ type: types.FETCH_SIDE_MENU });
+  return SideMenu.getSideMenu()
+    .then(data => {
+      dispatch({
+        type: types.FETCH_SIDE_MENU_SUCCESS,
+        data,
+      })
+    }).catch(() => {
+      dispatch({
+        type: types.FETCH_SIDE_MENU_ERROR,
+      })
+    })
+}
