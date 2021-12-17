@@ -24,18 +24,8 @@ function NavBar() {
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+        <nav className={"nav-menu active"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
-            <li>
-              <Link to="#" className="navbar-toggle">
-                <AiIcons.AiOutlineClose />
-              </Link>
-            </li>
             {NavBarComponents.map((item, index) => NavBarComponent(item, index))}
           </ul>
         </nav>

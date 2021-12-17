@@ -6,6 +6,8 @@ import SideMenu from "./modules/sideMenu";
 import NavBar from './containers/navBar';
 import EditSideMenu from './modules/sideMenu/editSideMenu';
 import Dashboard from './modules/dashboard';
+import Home from './modules/home';
+import './index.css'
 
 function App() {
   return (
@@ -14,8 +16,9 @@ function App() {
       <Router>
         <div className='main-wrapper'>
           <NavBar />
-          <div>
+          <div className='main-div'>
             <Routes>
+              <Route exact path="/" element={<Home />} />
               <Route exact path="/sideMenu" element={<SideMenu />} />
               <Route exact path="/sideMenu/edit" element={<EditSideMenu />} />
               <Route exact path="/dashboard" element={<Dashboard />} />
