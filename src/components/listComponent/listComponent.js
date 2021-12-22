@@ -1,8 +1,8 @@
 import React from 'react';
-import './sideMenuComponent.css';
+import './listComponent.css';
 
 
-export const SideMenuComponent = (props) => {
+export const ListComponent = (props) => {
   return (
     <div className='title'>
       {props.text}

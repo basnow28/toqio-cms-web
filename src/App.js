@@ -8,6 +8,7 @@ import EditSideMenu from './modules/sideMenu/editSideMenu';
 import Dashboard from './modules/dashboard';
 import Home from './modules/home';
 import './index.css'
+import EditDashboard from './modules/dashboard/editDashboard';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/sideMenu" element={<SideMenu />} />
               <Route exact path="/sideMenu/edit" element={<EditSideMenu />} />
               <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/dashboard/edit" element={<EditDashboard />} />
             </Routes>
           </div>
         </div>

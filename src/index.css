@@ -17,5 +17,6 @@ h3 {
 }
 
 .main-div{
- flex:1,
+ flex:1;
+ padding:16px;
 }

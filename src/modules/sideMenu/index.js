@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
-import { SideMenuComponent } from '../../components/sideMenuComponent/sideMenuComponent';
+import { ListComponent } from '../../components/listComponent/listComponent';
 
 
 class SideMenu extends React.Component {
@@ -24,7 +24,7 @@ class SideMenu extends React.Component {
       <div>
         <h3>This is the current side menu personalization setup</h3>
         {map(sideMenu, (item, index) =>
-          <SideMenuComponent
+          <ListComponent
             text={item.text}
           />
         )}
