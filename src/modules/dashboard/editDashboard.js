@@ -54,7 +54,7 @@ class EditDashboard extends React.Component {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <div>
+                      <div className="dashboard-item">
                         <DashboardItem
                           style={item.style}
                           components={item.components}
@@ -103,7 +103,6 @@ class EditDashboard extends React.Component {
 
   renderNewComponentsItemForm = () => {
     const { addStyle, style, components } = this.state.newSection;
-    console.log('addStyle', addStyle)
     return (
       <div>
         <input
@@ -135,7 +134,7 @@ class EditDashboard extends React.Component {
         <div>
           <Dropdown
             options={this.state.dashboardOptions}
-            placeholder="Select an option"
+            placeholder="Select a component"
             onChange={(e) => {
               this.setState({
                 newSection: {
@@ -227,6 +226,7 @@ const mapStateToProps = (state) => {
     errorFetchingDashboard: state.dashboard.errorFetchingDashboard,
     dashboardOptions: state.dashboard.dashboardOptions,
     errorFetchingDashboardOptions: state.dashboard.errorFetchingDashboardOptions,
+    errorPostingDashboard: state.dashboard.errorPostingDashboard,
   }
 }
 

@@ -28,7 +28,24 @@ const dashboardReducer = (state = initialState, action) => {
         errorFetchingDashboard: true,
       }
     /* POSTING DASHBOARD SETUP */
-
+    case types.POST_DASHBOARD:
+      return {
+        ...state,
+        postingDashboard: true,
+        errorPostingDashboard: false,
+      }
+    case types.POST_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        postingDashboard: false,
+        errorPostingDashboard: false,
+      }
+    case types.POST_DASHBOARD_ERROR:
+      return {
+        ...state,
+        postingDashboard: false,
+        errorPostingDashboard: true,
+      }
     /* FETCHING DASHBOARD OPTIONS */
     case types.FETCH_DASHBOARD_OPTIONS:
       return {

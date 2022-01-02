@@ -20,7 +20,6 @@ class Dashboard extends React.Component {
 
   render() {
     const { dashboard } = this.props;
-    console.log(dashboard)
     return (
       <div>
         <h3>This is the current dashboard personalization setup</h3>

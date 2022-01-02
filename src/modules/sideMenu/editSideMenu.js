@@ -21,6 +21,7 @@ class EditSideMenu extends React.Component {
   renderSideMenu = () => {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
+        You can drag and drop the elements of the list
         <Droppable droppableId="sideMenuList">
           {(provided, snapshot) => (
             <div
